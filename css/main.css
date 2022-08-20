@@ -1,0 +1,117 @@
+/* #ffff00 dan #1B1A17*/
+
+nav {
+  background-color: #1b1a17;
+}
+
+/* jumbotron */
+.jumbotron {
+  background-color: #1b1a17;
+  color: white;
+  padding: 3rem 0;
+}
+
+.jumbotron img {
+  width: 300px;
+  height: 300px;
+}
+
+.jumbotron div h2 {
+  font-size: 100px;
+}
+
+.jumbotron div p {
+  margin-top: -1.5rem;
+  margin-bottom: 0;
+}
+
+.jumbotron div a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* about */
+#about {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#about .container .bulat {
+  background-color: transparent;
+  border: 1px solid #1b1a17;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#about .container .satu {
+  width: 100px;
+  height: 100px;
+  top: -100px;
+  right: -100px;
+  animation: bulatsatu 3s infinite alternate;
+}
+
+@keyframes bulatsatu {
+  0% {
+    width: 100px;
+    height: 100px;
+    top: -100px;
+    right: -100px;
+    border: 1px solid #1b1a17;
+  }
+
+  100% {
+    transform: scale(2) translateX(-50px) translateY(50px);
+    border: 10px solid;
+  }
+}
+
+#about .container .dua {
+  width: 80px;
+  height: 80px;
+  top: 120px;
+  left: -100px;
+  animation: bulatdua 2s 500ms infinite alternate ease-out;
+}
+
+@keyframes bulatdua {
+  0% {
+    width: 80px;
+    height: 80px;
+    top: 120px;
+    left: -100px;
+    border: 1px solid #1b1a17;
+  }
+
+  100% {
+    transform: scale(2) translateX(50px) translateY(50px);
+    border: 10px solid;
+  }
+}
+
+/* project */
+#projects {
+  background-color: #1b1a17;
+  color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+#projects p {
+  color: #1b1a17;
+}
+
+/* contact */
+#contact {
+    background-color: white;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    color: #1b1a17;
+}
+
+
+footer {
+    background-color: #1b1a17;
+}
