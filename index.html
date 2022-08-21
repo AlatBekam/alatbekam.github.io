@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
 
     <link rel="stylesheet" href="css/main.css" />
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body id="home">
     <!-- navbar -->
@@ -45,12 +48,12 @@
         <div class="row justify-content-center align-items-center">
           <div class="col-md-5">
             <section class="jumbotron text-center">
-              <img src="img/thumb.jpg" class="rounded-circle img-thumbnail" />
+              <img src="img/thumb.jpg" class="rounded-circle img-thumbnail" data-aos="zoom-out" data-aos-duration="1500" />
             </section>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-5" data-aos="fade-left" data-aos-duration="1500">
             <h2>Hisara</h2>
-            <p>A Man From Pontianak</p>
+            <p class="lead"></p>
             <a href="https://www.instagram.com/hiisara_/"><i class="bi bi-instagram fs-3"></i></a>
             <a href="https://bit.ly/3SXxTBn"><i class="bi bi-youtube fs-3 m-2"></i></a>
           </div>
@@ -63,15 +66,15 @@
     <section id="about">
       <div class="container">
         <div class="row text-center mb-3">
-          <div class="col">
+          <div class="col" data-aos="fade-down" data-aos-delay="100" data-aos-offset="300">
             <h2>About Me</h2>
           </div>
         </div>
         <div class="row justify-content-center fs-5 text-center isi">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-4 mb-3" data-aos="fade-right" data-aos-delay="300" data-aos-offset="300">
             <p>Just avarage boys who have a dreams to became an profesional Front-End Development</p>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-4 mb-3" data-aos="fade-left" data-aos-delay="500" data-aos-offset="300">
             <p>Start learn Front-End at july 2022. Currently studying at SMKN 4 Pontianak as student</p>
           </div>
           <div class="bulat satu"></div>
@@ -84,14 +87,14 @@
     <!-- Project -->
     <section id="projects">
       <div class="container">
-        <div class="row mb-3">
+        <div class="row mb-3" data-aos="fade-down" data-aos-duration="500">
           <div class="col text-center">
             <h2>My Project</h2>
           </div>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="0">
             <div class="card">
               <a href="https://alatbekam.github.io/Latihan-COFFE/"> <img src="img/Projects/Coffe.png" class="card-img-top" alt="project-1" /> </a>
               <div class="card-body">
@@ -100,6 +103,7 @@
             </div>
           </div>
 
+          <!-- setiap project ditambah delay aosnya 100 -->
           <!-- copyan projects -->
           <!-- setiap row ada 3 projects -->
         </div>
@@ -158,6 +162,29 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
+    <!-- setup AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- end setup AOS -->
+
+    <!-- setup GSAP -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+      integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- setup text plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/TextPlugin.min.js"></script>
+    <script>
+      gsap.registerPlugin(TextPlugin);
+      gsap.to ('.lead', {duration: 1.5, delay: 1, text: 'A Man From Pontianak'})
+    </script>
+    <!-- end setup GSAP -->
+
+    <!-- mengkoneksikan form ke sheets -->
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbx5LsygYpT4DL-PpWPopxq09VOvzjuP75mcYU6d--pSFL5fkun-SBNRofm5oLRaYFiZeg/exec';
       const form = document.forms['AlatBekam-Contact-Form'];
@@ -185,5 +212,6 @@
           .catch((error) => console.error('Error!', error.message));
       });
     </script>
+    <!-- akhir script pengkoneksian form ke google sheets -->
   </body>
 </html>
