@@ -3,16 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-container: #f9fafb;
+    --color-on-container: #1b1a17;
+  }
+
+  .dark {
+    --color-container: #1b1a17;
+    --color-on-container: #fffbff;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white text-dark font-sans;
+    @apply bg-container text-onContainer font-sans transition-colors duration-300;
   }
 
   ::selection {
     @apply bg-accent text-dark;
+  }
+
+  ion-icon {
+    pointer-events: none;
   }
 }
 
@@ -21,12 +35,20 @@
     @apply max-w-none text-dark leading-relaxed;
   }
 
+  .dark .prose {
+    @apply text-gray-200;
+  }
+
   .prose h1 {
     @apply text-4xl font-bold mb-6 mt-8;
   }
 
   .prose h2 {
     @apply text-2xl font-bold mb-4 mt-8 pb-2 border-b border-gray-300;
+  }
+
+  .dark .prose h2 {
+    @apply border-gray-700;
   }
 
   .prose h3 {
@@ -41,6 +63,10 @@
     @apply text-dark underline decoration-accent decoration-2 underline-offset-2 hover:decoration-dark transition-colors;
   }
 
+  .dark .prose a {
+    @apply text-gray-200 hover:decoration-white;
+  }
+
   .prose ul {
     @apply list-disc list-inside mb-4 space-y-1;
   }
@@ -53,8 +79,16 @@
     @apply border-l-4 border-accent pl-4 italic my-4 text-gray-600;
   }
 
+  .dark .prose blockquote {
+    @apply text-gray-400;
+  }
+
   .prose code {
     @apply bg-gray-100 text-dark px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .dark .prose code {
+    @apply bg-gray-800 text-gray-200;
   }
 
   .prose pre {
@@ -79,5 +113,9 @@
 
   .prose td {
     @apply border border-gray-300 px-4 py-2;
+  }
+
+  .dark .prose td {
+    @apply border-gray-700;
   }
 }

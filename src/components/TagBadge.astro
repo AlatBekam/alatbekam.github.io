@@ -13,7 +13,7 @@ const { tag, active = false } = Astro.props;
     'px-3 py-1 text-xs font-mono rounded-full transition-colors',
     active
       ? 'bg-accent text-dark font-bold'
-      : 'bg-gray-100 text-gray-600 hover:bg-dark hover:text-white',
+      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-dark dark:hover:bg-white hover:text-white dark:hover:text-dark',
   ]}
 >
   {tag}

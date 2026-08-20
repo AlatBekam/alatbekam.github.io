@@ -21,13 +21,13 @@ const formattedDate = date.toLocaleDateString('en-US', {
       <img src={image} alt={title} class="w-full h-64 object-cover rounded-lg mb-6" />
     )}
     <h1 class="text-4xl font-bold mb-3">{title}</h1>
-    <time class="text-gray-500 text-sm">{formattedDate}</time>
+    <time class="text-gray-500 dark:text-gray-400 text-sm">{formattedDate}</time>
     {tags.length > 0 && (
       <div class="flex flex-wrap gap-2 mt-3">
         {tags.map((tag) => (
           <a
             href={`/blog?tag=${encodeURIComponent(tag)}`}
-            class="px-3 py-1 text-xs font-mono bg-dark text-white rounded-full hover:bg-gray-800 transition-colors"
+            class="px-3 py-1 text-xs font-mono bg-dark dark:bg-gray-700 text-white rounded-full hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
           >
             {tag}
           </a>
