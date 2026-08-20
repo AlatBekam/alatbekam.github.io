@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allBlog = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const allProjects = (await getCollection('projects'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="AlatBekam - Portfolio">
+  <Navbar />
+  <Hero />
+  <About />
+
+  <section class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">Latest Posts</h2>
+        <a href="/blog" class="text-sm font-medium text-gray-500 hover:text-dark transition-colors">
+          View all &rarr;
+        </a>
+      </div>
+      {allBlog.length > 0 ? (
+        <div class="grid md:grid-cols-3 gap-4">
+          {allBlog.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              tags={post.data.tags}
+              slug={post.id}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-400 text-center py-10">No posts yet. Check back soon!</p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-20 px-6 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold">Projects</h2>
+        <a href="/projects" class="text-sm font-medium text-gray-500 hover:text-dark transition-colors">
+          View all &rarr;
+        </a>
+      </div>
+      {allProjects.length > 0 ? (
+        <div class="grid md:grid-cols-3 gap-4">
+          {allProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              image={project.data.image}
+              link={project.data.link}
+              github={project.data.github}
+              tags={project.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-400 text-center py-10">Projects coming soon!</p>
+      )}
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

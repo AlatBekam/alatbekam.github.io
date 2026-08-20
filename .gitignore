@@ -1,0 +1,17 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.production
+
+# editor
+.vscode/
+!.vscode/settings.json
+
+# os
+.DS_Store
+Thumbs.db

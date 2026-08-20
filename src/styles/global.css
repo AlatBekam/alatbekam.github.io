@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-dark font-sans;
+  }
+
+  ::selection {
+    @apply bg-accent text-dark;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none text-dark leading-relaxed;
+  }
+
+  .prose h1 {
+    @apply text-4xl font-bold mb-6 mt-8;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-bold mb-4 mt-8 pb-2 border-b border-gray-300;
+  }
+
+  .prose h3 {
+    @apply text-xl font-bold mb-3 mt-6;
+  }
+
+  .prose p {
+    @apply mb-4 text-base leading-7;
+  }
+
+  .prose a {
+    @apply text-dark underline decoration-accent decoration-2 underline-offset-2 hover:decoration-dark transition-colors;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside mb-4 space-y-1;
+  }
+
+  .prose ol {
+    @apply list-decimal list-inside mb-4 space-y-1;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-accent pl-4 italic my-4 text-gray-600;
+  }
+
+  .prose code {
+    @apply bg-gray-100 text-dark px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-dark text-gray-100 rounded-lg p-4 mb-6 overflow-x-auto text-sm leading-relaxed;
+  }
+
+  .prose pre code {
+    @apply bg-transparent text-gray-100 p-0;
+  }
+
+  .prose img {
+    @apply rounded-lg my-6 w-full;
+  }
+
+  .prose table {
+    @apply w-full mb-6 border-collapse;
+  }
+
+  .prose th {
+    @apply bg-dark text-white px-4 py-2 text-left font-bold;
+  }
+
+  .prose td {
+    @apply border border-gray-300 px-4 py-2;
+  }
+}

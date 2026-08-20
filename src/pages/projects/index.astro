@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Projects - AlatBekam">
+  <Navbar />
+  <main class="pt-28 pb-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-2">Projects</h1>
+      <p class="text-gray-500 mb-10">Web apps, mobile apps, and other things I've built.</p>
+
+      {allProjects.length > 0 ? (
+        <div class="grid md:grid-cols-3 gap-6">
+          {allProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              image={project.data.image}
+              link={project.data.link}
+              github={project.data.github}
+              tags={project.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-400 text-center py-10">Projects coming soon!</p>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

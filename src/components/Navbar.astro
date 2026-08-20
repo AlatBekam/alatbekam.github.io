@@ -1,0 +1,68 @@
+---
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-dark/90 backdrop-blur-sm border-b border-gray-800">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold text-white hover:text-accent transition-colors">
+      AlatBekam
+    </a>
+
+    <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <ul id="nav-menu" class="hidden md:flex items-center gap-6">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-accent'
+                : 'text-gray-300 hover:text-white',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <ul id="mobile-menu" class="hidden md:hidden bg-dark border-t border-gray-800 px-6 pb-4">
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          class:list={[
+            'block py-2 text-sm font-medium transition-colors',
+            currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+              ? 'text-accent'
+              : 'text-gray-300 hover:text-white',
+          ]}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

