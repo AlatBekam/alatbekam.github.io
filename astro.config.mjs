@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://alatbekam.github.io',
+  // base: '/my-repo',
   integrations: [mdx(), tailwind()],
   markdown: {
     shikiConfig: {
