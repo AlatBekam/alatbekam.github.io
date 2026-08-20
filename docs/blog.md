@@ -1,21 +1,21 @@
-# Panduan Blog
+# Panduan Posts (Writeup & Blog)
 
-Cara menulis blog post / CTF writeup dalam format MDX.
+Cara menulis post (writeup CTF, catatan belajar, dll) dalam format MDX.
 
 ## Content Collection
 
-Blog post disimpan di `src/content/blog/writing/` sebagai file `.mdx`.
+Post disimpan di `src/content/writeups/writing/` sebagai file `.mdx`.
 
 ```
-src/content/blog/writing/
+src/content/writeups/writing/
 ├── sql-injection-writeup.mdx
 ├── caesar-cipher-writeup.mdx
 └── ... (post baru ditambah di sini)
 ```
 
-Setiap file `.mdx` = satu blog post. Nama file akan menjadi URL slug:
-- `sql-injection-writeup.mdx` → `/blog/writing/sql-injection-writeup`
-- `my-new-post.mdx` → `/blog/writing/my-new-post`
+Setiap file `.mdx` = satu post. Nama file akan menjadi URL slug:
+- `sql-injection-writeup.mdx` → `/posts/writing/sql-injection-writeup`
+- `my-new-post.mdx` → `/posts/writing/my-new-post`
 
 ## Frontmatter
 
@@ -45,25 +45,25 @@ draft: false                           # Opsional — true = tidak dipublish
 
 ## Cara Membuat Post Baru
 
-1. Buat file baru di `src/content/blog/writing/`
+1. Buat file baru di `src/content/writeups/writing/`
 2. Gunakan nama file yang deskriptif (contoh: `xss-writeup.mdx`)
 3. Isi frontmatter (lihat di atas)
 4. Isi konten di bawah frontmatter
 5. Jalankan `npm run dev` untuk preview
-6. Post baru akan muncul di halaman `/blog`
+6. Post baru akan muncul di halaman `/posts`
 
 **Contoh langkah-langkah:**
 
 ```bash
 # 1. Buat file baru
-touch src/content/blog/writing/xss-writeup.mdx
+touch src/content/writeups/writing/xss-writeup.mdx
 
 # 2. Edit file tersebut (lihat template di bawah atau di folder templates/)
 
 # 3. Jalankan dev server
 npm run dev
 
-# 4. Buka http://localhost:4321/blog
+# 4. Buka http://localhost:4321/posts
 ```
 
 ## Daftar Tag

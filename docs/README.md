@@ -13,12 +13,13 @@ Portfolio website dan blog untuk CTF writeup serta project showcase. Dibangun de
 
 ## Fitur
 
-- **Blog / CTF Writeup** — Tulis writeup CTF dalam format MDX dengan tag kategori (Web, Crypto, Forensics, dll)
+- **Posts (Writeup & Blog)** — Tulis writeup CTF, catatan belajar, dll dalam format MDX dengan tag kategori
 - **Project Showcase** — Tampilkan project kerja (web app, mobile app) dengan gambar, link live demo, dan source code
-- **Tag Filter** — Filter post blog berdasarkan tag di halaman `/blog`
+- **Tag Filter** — Filter post berdasarkan tag di halaman `/posts`
+- **Table of Contents** — TOC sidebar otomatis pada halaman writeup (navigate per section)
 - **Syntax Highlighting** — Code block otomatis di-highlight menggunakan Shiki (theme: `github-dark`)
 - **Responsive** — Tampilan optimal di desktop dan mobile
-- **Dark Theme** — Warna utama gelap dengan aksen kuning
+- **Dark/Light Mode** — Toggle tema gelap/terang dengan Ionicons
 
 ## Quick Start
 
@@ -42,7 +43,7 @@ Buka `http://localhost:4321` di browser.
 |---|---|
 | [setup.md](./setup.md) | Instalasi, konfigurasi, dan struktur project |
 | [development.md](./development.md) | Cara menjalankan dev server, build, dan preview |
-| [blog.md](./blog.md) | Panduan menulis blog / CTF writeup |
+| [blog.md](./blog.md) | Panduan menulis post (writeup, catatan belajar, dll) |
 | [projects.md](./projects.md) | Panduan menambah project |
 | [customization.md](./customization.md) | Kustomisasi tema, warna, komponen |
 | [deployment.md](./deployment.md) | Build dan deploy ke GitHub Pages |
@@ -64,15 +65,15 @@ Template siap pakai untuk menulis post baru:
 
 ```
 ├── docs/                          # Dokumentasi ini
-│   ├── templates/                 # Template blog
+│   ├── templates/                 # Template posts (writeup, project, belajar)
 │   └── ...
 ├── public/img/                    # Gambar (profile, project thumbnails)
 ├── src/
-│   ├── components/                # Astro components
+│   ├── components/                # Astro components (Navbar, TOC, Cards, dll)
 │   ├── content/
-│   │   ├── blog/writing/          # MDX blog posts (CTF writeup)
-│   │   └── projects/writing/      # MDX project posts
-│   ├── layouts/                   # Page layouts
+│   │   ├── writeups/writing/      # MDX posts (CTF writeup, catatan belajar)
+│   │   └── projects/writing/      # MDX project logs
+│   ├── layouts/                   # Page layouts (BaseLayout, WriteupPost)
 │   ├── pages/                     # Routes (file = URL)
 │   └── styles/global.css          # Tailwind + prose styles
 ├── astro.config.mjs               # Astro config

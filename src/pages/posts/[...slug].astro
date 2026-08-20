@@ -1,37 +1,38 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogPost from '../../layouts/BlogPost.astro';
+import WriteupPost from '../../layouts/WriteupPost.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('writeups');
   return posts.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: post.id.replace(/\.mdx$/, '') },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <BaseLayout title={`${post.data.title} - AlatBekam`} description={post.data.description}>
   <Navbar />
   <main class="pt-28 pb-20 px-6">
-    <article class="max-w-3xl mx-auto">
-      <a href="/blog" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-white mb-8 transition-colors">
-        &larr; Back to blog
+    <article class="max-w-6xl mx-auto">
+      <a href="/posts" class="inline-flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-white mb-8 transition-colors">
+        &larr; Back to posts
       </a>
-      <BlogPost
+      <WriteupPost
         title={post.data.title}
         date={post.data.date}
         tags={post.data.tags}
         image={post.data.image}
+        headings={headings}
       >
         <Content />
-      </BlogPost>
+      </WriteupPost>
     </article>
   </main>
   <Footer />

@@ -51,30 +51,31 @@ alatbekam.github.io/
 │
 ├── src/                           # Source code
 │   ├── components/                # reusable UI components
-│   │   ├── Navbar.astro           # Navigasi atas (fixed)
+│   │   ├── Navbar.astro           # Navigasi atas (fixed, theme toggle)
 │   │   ├── Hero.astro             # Bagian profile di homepage
 │   │   ├── About.astro            # Bagian "About Me" di homepage
-│   │   ├── BlogCard.astro         # Card untuk preview blog post
+│   │   ├── BlogCard.astro         # Card untuk preview post
 │   │   ├── ProjectCard.astro      # Card untuk preview project
 │   │   ├── TagBadge.astro         # Badge/pill untuk tag
+│   │   ├── TableOfContents.astro  # TOC sidebar untuk writeup
 │   │   └── Footer.astro           # Footer halaman
 │   │
 │   ├── content/                   # Content collections (MDX)
-│   │   ├── blog/
-│   │   │   └── writing/           # Blog posts (CTF writeup, dll)
+│   │   ├── writeups/
+│   │   │   └── writing/           # Posts (CTF writeup, catatan belajar, dll)
 │   │   └── projects/
-│   │       └── writing/           # Project posts
+│   │       └── writing/           # Project logs
 │   │
 │   ├── layouts/                   # Page layouts
 │   │   ├── BaseLayout.astro       # Shell HTML untuk semua halaman
-│   │   └── BlogPost.astro         # Layout untuk individual blog post
+│   │   └── WriteupPost.astro      # Layout untuk writeup (dengan TOC sidebar)
 │   │
 │   ├── pages/                     # Routes — nama file = URL
 │   │   ├── index.astro            # Homepage (/)
 │   │   ├── about.astro            # About page (/about)
-│   │   ├── blog/
-│   │   │   ├── index.astro        # Blog listing (/blog)
-│   │   │   └── [...slug].astro    # Dynamic route (/blog/:slug)
+│   │   ├── posts/
+│   │   │   ├── index.astro        # Posts listing (/posts)
+│   │   │   └── [...slug].astro    # Dynamic route (/posts/:slug)
 │   │   └── projects/
 │   │       └── index.astro        # Projects listing (/projects)
 │   │
@@ -186,12 +187,12 @@ Menggunakan preset TypeScript strict dari Astro. Tidak perlu diubah kecuali ada 
 
 ### `src/content.config.ts`
 
-Schema untuk content collections (blog dan projects):
+Schema untuk content collections (writeups dan projects):
 
 ```ts
 import { defineCollection, z } from 'astro:content';
 
-const blog = defineCollection({
+const writeups = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),               // Wajib
@@ -216,7 +217,7 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+export const collections = { writeups, projects };
 ```
 
 Lihat [blog.md](./blog.md) dan [projects.md](./projects.md) untuk penjelasan cara mengisi konten.

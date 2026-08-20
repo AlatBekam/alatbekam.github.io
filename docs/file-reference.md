@@ -19,26 +19,27 @@ Daftar lengkap semua file dalam project beserta deskripsi dan apakah file terseb
 
 | File | Deskripsi | Editable? |
 |---|---|---|
-| `src/content.config.ts` | Schema untuk blog & projects collections | Ya — jika ingin menambah/mengubah field |
+| `src/content.config.ts` | Schema untuk writeups & projects collections | Ya — jika ingin menambah/mengubah field |
 
 ### Components
 
 | File | Deskripsi | Editable? |
 |---|---|---|
-| `src/components/Navbar.astro` | Navigasi atas (fixed, responsive) | Ya |
+| `src/components/Navbar.astro` | Navigasi atas (fixed, responsive, theme toggle) | Ya |
 | `src/components/Hero.astro` | Section profile di homepage | Ya |
 | `src/components/About.astro` | Section "About Me" di homepage | Ya |
-| `src/components/BlogCard.astro` | Card component untuk blog post | Ya |
+| `src/components/BlogCard.astro` | Card component untuk post (writeup) | Ya |
 | `src/components/ProjectCard.astro` | Card component untuk project | Ya |
 | `src/components/TagBadge.astro` | Badge/pill untuk tag | Ya |
+| `src/components/TableOfContents.astro` | TOC sidebar untuk writeup (auto dari headings) | Ya |
 | `src/components/Footer.astro` | Footer halaman | Ya |
 
 ### Layouts
 
 | File | Deskripsi | Editable? |
 |---|---|---|
-| `src/layouts/BaseLayout.astro` | Shell HTML (head, meta, fonts) | Ya |
-| `src/layouts/BlogPost.astro` | Layout untuk individual blog post | Ya |
+| `src/layouts/BaseLayout.astro` | Shell HTML (head, meta, fonts, Ionicons, theme init) | Ya |
+| `src/layouts/WriteupPost.astro` | Layout untuk writeup (dengan TOC sidebar) | Ya |
 
 ### Pages (Routes)
 
@@ -46,16 +47,16 @@ Daftar lengkap semua file dalam project beserta deskripsi dan apakah file terseb
 |---|---|---|---|
 | `src/pages/index.astro` | `/` | Homepage | Ya |
 | `src/pages/about.astro` | `/about` | About page | Ya |
-| `src/pages/blog/index.astro` | `/blog` | Blog listing + tag filter | Ya |
-| `src/pages/blog/[...slug].astro` | `/blog/:slug` | Individual blog post | Jarang perlu diubah |
+| `src/pages/posts/index.astro` | `/posts` | Posts listing + tag filter | Ya |
+| `src/pages/posts/[...slug].astro` | `/posts/:slug` | Individual post (dengan TOC sidebar) | Jarang perlu diubah |
 | `src/pages/projects/index.astro` | `/projects` | Projects listing | Ya |
 
 ### Content (MDX)
 
 | File | Deskripsi | Editable? |
 |---|---|---|
-| `src/content/blog/writing/*.mdx` | Blog posts (CTF writeup, dll) | Ya — ini konten yang kamu tulis |
-| `src/content/projects/writing/*.mdx` | Project posts | Ya — ini konten yang kamu tulis |
+| `src/content/writeups/writing/*.mdx` | Posts (CTF writeup, catatan belajar, dll) | Ya — ini konten yang kamu tulis |
+| `src/content/projects/writing/*.mdx` | Project logs | Ya — ini konten yang kamu tulis |
 
 ### Styles
 
@@ -75,7 +76,7 @@ Daftar lengkap semua file dalam project beserta deskripsi dan apakah file terseb
 
 ## Content Collection Schema
 
-### Blog Collection
+### Writeups Collection
 
 ```typescript
 {
@@ -108,8 +109,8 @@ Daftar lengkap semua file dalam project beserta deskripsi dan apakah file terseb
 |---|---|---|
 | `/` | `src/pages/index.astro` | Homepage |
 | `/about` | `src/pages/about.astro` | About page |
-| `/blog` | `src/pages/blog/index.astro` | Blog listing |
-| `/blog/{slug}` | `src/pages/blog/[...slug].astro` | Blog post (auto-generate dari MDX) |
+| `/posts` | `src/pages/posts/index.astro` | Posts listing (writeups + blog) |
+| `/posts/{slug}` | `src/pages/posts/[...slug].astro` | Individual post (dengan TOC sidebar) |
 | `/projects` | `src/pages/projects/index.astro` | Projects listing |
 
 ## Generated Files

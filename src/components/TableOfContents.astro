@@ -1,0 +1,70 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+<aside class="hidden xl:block sticky top-28 w-56 flex-shrink-0">
+  <p class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">On this page</p>
+  <nav id="toc-nav">
+    <ul class="space-y-1.5">
+      {toc.map((h) => (
+        <li class:list={[h.depth === 3 && 'ml-3']}>
+          <a
+            href={`#${h.slug}`}
+            class="toc-link block text-sm text-gray-500 dark:text-gray-400 hover:text-dark dark:hover:text-white transition-colors py-0.5 border-l-2 border-transparent hover:border-accent pl-2"
+            data-slug={h.slug}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  function initTocSpy() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
+    if (links.length === 0) return;
+
+    const slugMap = new Map<string, HTMLAnchorElement>();
+    links.forEach((link) => {
+      const slug = link.dataset.slug;
+      if (slug) slugMap.set(slug, link);
+    });
+
+    const headings = Array.from(slugMap.keys())
+      .map((slug) => document.getElementById(slug))
+      .filter(Boolean);
+
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            links.forEach((l) => {
+              l.classList.remove('border-accent', 'text-dark', 'dark:text-white');
+              l.classList.add('border-transparent');
+            });
+            const active = slugMap.get(entry.target.id);
+            if (active) {
+              active.classList.add('border-accent', 'text-dark', 'dark:text-white');
+              active.classList.remove('border-transparent');
+            }
+          }
+        });
+      },
+      { rootMargin: '-80px 0px -75% 0px' }
+    );
+
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  initTocSpy();
+  document.addEventListener('astro:after-swap', initTocSpy);
+</script>
