@@ -31,13 +31,13 @@ const readTime  = Math.max(1, Math.ceil(wordCount / 200));
   </div>
 
   <h2 class="post-title mono">
-    <a href={`/posts/${post.id.replace(/\.(md|mdx)$/, '')}`}>{title}</a>
+    <a href={`/posts/${post.id.replace(/\.(md|mdx)$/, '')}`} class="card-title-link">{title}</a>
   </h2>
 
-  <p class="post-desc">{description}</p>
+  <p class="post-desc card-desc">{description}</p>
 
   {tags.length > 0 && (
-    <div class="post-tags">
+    <div class="post-tags tags-row">
       {tags.map(tag => (
         <span class="tag">#{tag}</span>
       ))}
@@ -63,8 +63,6 @@ const readTime  = Math.max(1, Math.ceil(wordCount / 200));
     margin-bottom: 0.5rem;
   }
 
-  .meta-sep { color: var(--border); }
-
   .post-title {
     font-size: 1.125rem;
     font-weight: 600;
@@ -72,26 +70,9 @@ const readTime  = Math.max(1, Math.ceil(wordCount / 200));
     line-height: 1.35;
   }
 
-  .post-title a {
-    color: var(--on-container);
-    transition: color 0.15s;
-  }
-  .post-title a:hover { color: var(--primary); }
-
-  .post-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 0.75rem;
-    max-width: 65ch;
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-    margin-bottom: 0.75rem;
-  }
+  /* .post-desc and .post-tags layout → see global.css (.card-desc, .tags-row) */
+  /* .post-title a hover            → see global.css (.card-title-link)        */
+  /* .meta-sep color                → see global.css (.meta-sep)               */
 
   .post-read {
     font-size: 0.8rem;

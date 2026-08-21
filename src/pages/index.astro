@@ -3,7 +3,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { getCollection } from 'astro:content';
+
 
 // Get latest 3 posts and 3 projects (not drafts), sorted by date desc
 const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
@@ -31,8 +33,8 @@ const merged: AnyEntry[] = [
   <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Introduction">
     <div class="hero-avatar" aria-hidden="true">
-      <img src="/images/hero-image-light.png" alt="" class="hero-img hero-img--light" />
-      <img src="/images/hero-image-dark.png"  alt="" class="hero-img hero-img--dark" />
+      <img src="/images/hero-image-light.png" alt="" class="hero-img theme-img--light" />
+      <img src="/images/hero-image-dark.png"  alt="" class="hero-img theme-img--dark" />
     </div>
 
     <h1 class="hero-title mono">
@@ -48,20 +50,8 @@ const merged: AnyEntry[] = [
     </p>
 
     <!-- Social links -->
-    <div class="hero-socials" aria-label="Social media links">
-      <a href="https://github.com/alatbekam" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
-        <ion-icon name="logo-github"></ion-icon>
-      </a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
-        <ion-icon name="logo-linkedin"></ion-icon>
-      </a>
-      <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="social-link">
-        <ion-icon name="logo-discord"></ion-icon>
-      </a>
-      <a href="mailto:email@example.com" aria-label="Email" class="social-link">
-        <ion-icon name="mail-outline"></ion-icon>
-      </a>
-    </div>
+    <SocialLinks variant="icons" />
+
 
     <!-- Quick nav -->
     <nav class="hero-nav mono" aria-label="Quick navigation">
@@ -146,11 +136,7 @@ const merged: AnyEntry[] = [
     object-fit: contain;
   }
 
-  /* Light mode: show light image, hide dark image */
-  html:not(.dark) .hero-img--dark  { display: none; }
-
-  /* Dark mode: show dark image, hide light image */
-  html.dark .hero-img--light { display: none; }
+  /* .theme-img--light / .theme-img--dark → global.css */
 
 
   .hero-title {
@@ -172,25 +158,6 @@ const merged: AnyEntry[] = [
     line-height: 1.7;
     margin-bottom: 1.25rem;
     min-height: 1rem; /* keeps spacing even when empty */
-  }
-
-  .hero-socials {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .social-link {
-    font-size: 1.375rem;
-    color: var(--muted);
-    transition: color 0.15s, transform 0.15s;
-    display: flex;
-    align-items: center;
-  }
-  .social-link:hover {
-    color: var(--primary);
-    opacity: 1;
-    transform: translateY(-2px);
   }
 
   .hero-nav {

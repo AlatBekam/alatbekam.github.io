@@ -1,6 +1,7 @@
 ---
 // src/pages/about.astro — About page
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
 <BaseLayout
@@ -17,21 +18,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="about-content">
 
     <p class="about-intro">
-      My name is <strong>AlatBekam</strong>, Just an average collage student from Pontianak, West Borneo, Indonesia. Intrested in security thingy, but forced to become Mobile Developer hehe.
+      Hi, my name is <strong class="about-strong">AlatBekam</strong>, Just an average collage student from Pontianak, West Borneo, Indonesia. Intrested in security thingy, but forced to become Mobile Developer hehe.
       <!-- Ganti dengan bio lengkap kamu di sini. -->
     </p>
 
     <!-- Sosial media -->
-    <div class="about-socials" aria-label="Social media">
-      <a href="https://github.com/alatbekam" target="_blank" rel="noopener noreferrer" class="social-item mono">
-        <ion-icon name="logo-github"></ion-icon> github.com/alatbekam
-      </a>
-      <a href="https://www.linkedin.com/in/hisyam-faturrahman/" target="_blank" rel="noopener noreferrer" class="social-item mono">
-        <ion-icon name="logo-linkedin"></ion-icon> linkedin
-      </a>
-      <!-- <a href="mailto:email@example.com" class="social-item mono">
-        <ion-icon name="mail-outline"></ion-icon> email@example.com (ganti)
-      </a> -->
+    <div class="about-socials">
+      <SocialLinks variant="list"/>
     </div>
 
     <!-- CTF Section -->
@@ -113,20 +106,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .about-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb-label {
-    font-size: 0.75rem;
-    color: var(--primary);
-    margin-bottom: 0.25rem;
-  }
+  /* .breadcrumb-label → global.css */
 
   .about-title {
     font-size: 1.875rem;
     font-weight: 700;
     color: var(--on-container);
+  }
+
+  .about-strong {
+    color: var(--primary);
+    font-weight: 700;
   }
 
   .about-content {
@@ -147,16 +137,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 2.5rem;
   }
 
-  .social-item {
-    font-size: 0.875rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.15s;
-  }
-  .social-item ion-icon { font-size: 1.1rem; }
-  .social-item:hover { color: var(--primary); opacity: 1; }
+  /* .social-item styles → SocialLinks.astro (.socials-list, .social-item) */
 
   .about-section {
     margin-bottom: 2.5rem;

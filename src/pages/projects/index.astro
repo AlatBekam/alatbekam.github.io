@@ -30,7 +30,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
     <!-- Project list -->
     <div class="archive-list">
       {projects.length === 0 && (
-        <p class="empty-state mono">Belum ada project. Tambahkan file .md di <code>src/content/projects/</code>.</p>
+        <p class="empty-state mono">Maaf ya belum ada project :(. Pantengin terus yaa!</p>
       )}
       {projects.map(project => (
         <><ProjectCard project={project} /><hr class="divider" /></>
@@ -39,54 +39,3 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
   </div>
 </BaseLayout>
 
-<style>
-  .archive-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .breadcrumb-label {
-    font-size: 0.75rem;
-    color: var(--primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .archive-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--on-container);
-  }
-
-  .archive-layout {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .archive-sidebar {
-    font-size: 0.775rem;
-    color: var(--muted);
-    line-height: 1.8;
-    position: sticky;
-    top: 5rem;
-  }
-
-  @media (max-width: 640px) {
-    .archive-layout {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    .archive-sidebar {
-      position: static;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.5rem;
-    }
-  }
-
-  .empty-state {
-    font-size: 0.875rem;
-    color: var(--muted);
-    padding: 2rem 0;
-  }
-</style>

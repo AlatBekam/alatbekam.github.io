@@ -5,8 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="404 – Not Found | AlatBekam" description="Halaman tidak ditemukan.">
   <div class="not-found">
-    <img src="/images/404-image-light.png" alt="" class="nf-img nf-img--light" />
-    <img src="/images/404-image-dark.png"  alt="" class="nf-img nf-img--dark" />
+    <img src="/images/404-image-light.png" alt="" class="nf-img theme-img--light" />
+    <img src="/images/404-image-dark.png"  alt="" class="nf-img theme-img--dark" />
     <p class="nf-code mono">404</p>
     <h1 class="nf-title mono">Page not found.</h1>
     <p class="nf-desc">Aww, Pagenya tidak ada. Maaf ya :(</p>
@@ -55,9 +55,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 1.5rem;
   }
 
-  /* Light mode: show light image, hide dark image */
-  html:not(.dark) .nf-img--dark  { display: none; }
-
-  /* Dark mode: show dark image, hide light image */
-  html.dark .nf-img--light { display: none; }
+  /* .theme-img--light / .theme-img--dark → global.css */
 </style>

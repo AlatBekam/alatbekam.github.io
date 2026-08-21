@@ -1,5 +1,6 @@
 ---
 // Footer.astro
+import SocialLinks from './SocialLinks.astro';
 const year = new Date().getFullYear();
 ---
 
@@ -7,10 +8,7 @@ const year = new Date().getFullYear();
   <div class="footer-inner">
     <span class="mono footer-copy">© {year} AlatBekam</span>
     <div class="footer-links">
-      <a href="/sitemap-index.xml" class="mono footer-link">Sitemap</a>
-      <a href="https://github.com/alatbekam" class="footer-link" target="_blank" rel="noopener noreferrer">
-        <ion-icon name="logo-github" style="font-size:1.125rem;vertical-align:middle;"></ion-icon>
-      </a>
+      <SocialLinks variant="footer" />
     </div>
   </div>
 </footer>

@@ -1,0 +1,154 @@
+---
+// SocialLinks.astro
+
+interface SocialItem {
+  href: string;
+  icon: string;       // nama icon Ionicons
+  label: string;      // teks label & aria-label
+  external?: boolean; // default true
+}
+
+interface Props {
+  /**
+   * 'icons'  → hanya ikon + margin-bottom (hero / index)
+   * 'list'   → ikon + teks label (about)
+   * 'footer' → hanya ikon, kompak, tanpa margin (footer)
+   */
+  variant?: 'icons' | 'list' | 'footer';
+}
+
+const { variant = 'icons' } = Astro.props;
+
+// ─────────────────────────────────────────────────────────────
+// EDIT BAGIAN INI untuk menambah / mengubah / menghapus link
+// ─────────────────────────────────────────────────────────────
+const socials: SocialItem[] = [
+  {
+    href:  'https://github.com/alatbekam',
+    icon:  'logo-github',
+    label: 'github.com/alatbekam',
+  },
+  {
+    href:  'https://www.linkedin.com/in/hisyam-faturrahman/',
+    icon:  'logo-linkedin',
+    label: 'LinkedIn',
+  },
+  // {
+  //   href:  'https://discord.com',
+  //   icon:  'logo-discord',
+  //   label: 'Discord',
+  // },
+  // Uncomment di bawah ini jika ingin menampilkan email:
+  // {
+  //   href:     'mailto:email@example.com',
+  //   icon:     'mail-outline',
+  //   label:    'email@example.com',
+  //   external: false,
+  // },
+];
+// ─────────────────────────────────────────────────────────────
+---
+
+{variant === 'icons' ? (
+  <div class="socials-icons" aria-label="Social media links">
+    {socials.map(s => (
+      <a
+        href={s.href}
+        aria-label={s.label}
+        class="social-link"
+        {...(s.external !== false
+          ? { target: '_blank', rel: 'noopener noreferrer' }
+          : {})}
+      >
+        <ion-icon name={s.icon}></ion-icon>
+      </a>
+    ))}
+  </div>
+) : variant === 'footer' ? (
+  <div class="socials-footer" aria-label="Social media links">
+    {socials.map(s => (
+      <a
+        href={s.href}
+        aria-label={s.label}
+        class="social-link social-link--footer"
+        {...(s.external !== false
+          ? { target: '_blank', rel: 'noopener noreferrer' }
+          : {})}
+      >
+        <ion-icon name={s.icon}></ion-icon>
+      </a>
+    ))}
+  </div>
+) : (
+  <div class="socials-list" aria-label="Social media">
+    {socials.map(s => (
+      <a
+        href={s.href}
+        class="social-item mono"
+        {...(s.external !== false
+          ? { target: '_blank', rel: 'noopener noreferrer' }
+          : {})}
+      >
+        <ion-icon name={s.icon}></ion-icon>
+        {s.label}
+      </a>
+    ))}
+  </div>
+)}
+
+<style>
+  /* ── Variant: icons (hero) ── */
+  .socials-icons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── Variant: footer ── */
+  .socials-footer {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .social-link--footer {
+    font-size: 1.125rem;
+  }
+
+  .social-link {
+    font-size: 1.375rem;
+    color: var(--muted);
+    transition: color 0.15s, transform 0.15s;
+    display: flex;
+    align-items: center;
+  }
+  .social-link:hover {
+    color: var(--primary);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  /* ── Variant: list (about) ── */
+  .socials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .social-item {
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.15s;
+  }
+  .social-item ion-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .social-item:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
+</style>
