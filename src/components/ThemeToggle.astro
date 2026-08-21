@@ -1,0 +1,67 @@
+---
+// ThemeToggle.astro
+// Pill-shaped slide switch with Ionicons moon/sun icons
+---
+
+<button
+  id="theme-toggle"
+  aria-label="Toggle dark/light mode"
+  class="theme-toggle"
+  title="Toggle theme"
+>
+  <!-- Sun icon (Ionicons) -->
+  <span class="theme-icon icon-sun" aria-hidden="true">
+    <ion-icon name="sunny-outline"></ion-icon>
+  </span>
+  <!-- Moon icon (Ionicons) -->
+  <span class="theme-icon icon-moon" aria-hidden="true">
+    <ion-icon name="moon-outline"></ion-icon>
+  </span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.3rem 0.625rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--muted);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .theme-icon {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  /* Light mode: show sun, hide moon */
+  html:not(.dark) .icon-moon { opacity: 0.35; }
+  html:not(.dark) .icon-sun  { color: var(--primary); }
+
+  /* Dark mode: show moon, hide sun */
+  html.dark .icon-sun  { opacity: 0.35; }
+  html.dark .icon-moon { color: var(--primary); }
+</style>
+
+<script>
+  // Inline theme init runs in <head> (see BaseLayout), this handles the button click
+  const btn = document.getElementById('theme-toggle');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+</script>

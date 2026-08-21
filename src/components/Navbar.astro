@@ -1,90 +1,123 @@
 ---
-const currentPath = Astro.url.pathname;
-
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
+// Navbar.astro
+import ThemeToggle from './ThemeToggle.astro';
+const navLinks = [
+  { href: '/',         label: 'home/' },
+  { href: '/posts',    label: 'posts/' },
+  { href: '/projects', label: 'projects/' },
+  { href: '/about',    label: 'about/' },
 ];
+const currentPath = Astro.url.pathname;
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-container backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="text-xl font-bold hover:text-accent transition-colors">
-      AlatBekam
-    </a>
+<header class="site-nav">
+  <nav class="nav-inner">
+    <!-- Logo / Brand -->
+    <a href="/" class="nav-brand mono">./AlatBekam</a>
 
-    <div class="flex items-center gap-4 md:gap-6">
-      <ul id="nav-menu" class="hidden md:flex items-center gap-6">
-        {links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class:list={[
-                'text-sm font-medium transition-colors',
-                currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                  ? 'text-accent'
-                  : 'text-gray-500 dark:text-gray-300 hover:text-dark dark:hover:text-white',
-              ]}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <!-- Mobile hamburger -->
+    <button id="nav-toggle" class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <ion-icon name="menu-outline" style="font-size:1.5rem;"></ion-icon>
+    </button>
 
-      <!-- Theme Toggle -->
-      <button id="theme-toggle" class="relative flex items-center w-14 h-7 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-300 focus:outline-none" aria-label="Toggle theme">
-        <ion-icon name="moon-outline" class="absolute left-1.5 text-sm z-10 transition-colors text-dark dark:text-gray-400"></ion-icon>
-        <ion-icon name="sunny-outline" class="absolute right-1.5 text-sm z-10 transition-colors text-gray-400 dark:text-dark"></ion-icon>
-        <span id="theme-knob" class="absolute left-0.5 w-6 h-6 rounded-full bg-accent transition-all duration-300 dark:translate-x-7"></span>
-      </button>
-
-      <!-- Mobile Menu Toggle -->
-      <button id="menu-toggle" class="md:hidden focus:outline-none" aria-label="Toggle menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <ul id="mobile-menu" class="hidden md:hidden bg-container border-t border-gray-200 dark:border-gray-800 px-6 pb-4 transition-colors">
-    {links.map((link) => (
-      <li>
+    <!-- Nav links + toggle -->
+    <div id="nav-menu" class="nav-menu">
+      {navLinks.map(link => (
         <a
           href={link.href}
-          class:list={[
-            'block py-2 text-sm font-medium transition-colors',
-            currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-              ? 'text-accent'
-              : 'text-gray-500 dark:text-gray-300 hover:text-dark dark:hover:text-white',
-          ]}
+          class={`nav-link mono ${currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) ? 'active' : ''}`}
         >
           {link.label}
         </a>
-      </li>
-    ))}
-  </ul>
-</nav>
+      ))}
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--container);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--container) 88%, transparent);
+    transition: background 0.25s;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.875rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .nav-brand {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--on-container);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .nav-brand:hover { color: var(--primary); opacity: 1; }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-link:hover,
+  .nav-link.active { color: var(--primary); opacity: 1; }
+
+  /* Hamburger - hidden on desktop */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--on-container);
+    padding: 0.25rem;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .nav-hamburger { display: flex; align-items: center; }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.875rem;
+      width: 100%;
+      padding: 1rem 0 0.5rem;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-inner { flex-wrap: wrap; }
+  }
+</style>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  const themeToggle = document.getElementById('theme-toggle');
-  themeToggle?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  });
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
 </script>

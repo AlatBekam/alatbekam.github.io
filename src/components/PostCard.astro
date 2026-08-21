@@ -1,0 +1,109 @@
+---
+// PostCard.astro
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, description, publishDate, tags } = post.data;
+
+// Format date
+const formattedDate = publishDate.toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+// Estimate reading time (avg 200 wpm)
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+const readTime  = Math.max(1, Math.ceil(wordCount / 200));
+---
+
+<article class="post-card">
+  <div class="post-meta mono">
+    <span>{formattedDate}</span>
+    <span class="meta-sep">/</span>
+    <span>{readTime} min read</span>
+    <span class="meta-sep">/</span>
+    <span>{wordCount.toLocaleString()} words</span>
+  </div>
+
+  <h2 class="post-title mono">
+    <a href={`/posts/${post.id.replace(/\.(md|mdx)$/, '')}`}>{title}</a>
+  </h2>
+
+  <p class="post-desc">{description}</p>
+
+  {tags.length > 0 && (
+    <div class="post-tags">
+      {tags.map(tag => (
+        <span class="tag">#{tag}</span>
+      ))}
+    </div>
+  )}
+
+  <a href={`/posts/${post.id.replace(/\.(md|mdx)$/, '')}`} class="post-read mono">read ↗</a>
+</article>
+
+<style>
+  .post-card {
+    padding: 1.5rem 0;
+    position: relative;
+  }
+
+  .post-meta {
+    font-size: 0.775rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .meta-sep { color: var(--border); }
+
+  .post-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .post-title a {
+    color: var(--on-container);
+    transition: color 0.15s;
+  }
+  .post-title a:hover { color: var(--primary); }
+
+  .post-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+    max-width: 65ch;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-read {
+    font-size: 0.8rem;
+    color: var(--muted);
+    position: absolute;
+    bottom: 1.5rem;
+    right: 0;
+    transition: color 0.15s;
+  }
+  .post-read:hover { color: var(--primary); opacity: 1; }
+
+  @media (max-width: 500px) {
+    .post-read { position: static; display: inline-block; margin-top: 0.25rem; }
+  }
+</style>

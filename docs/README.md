@@ -1,82 +1,59 @@
-# AlatBekam Portfolio — Dokumentasi
+# 📋 Daftar Isi Dokumentasi
 
-Portfolio website dan blog untuk CTF writeup serta project showcase. Dibangun dengan **Astro 5**, **Tailwind CSS**, dan **MDX**.
+Dokumentasi lengkap untuk website portofolio `alatbekam.github.io` yang dibangun dengan Astro.
 
-## Tech Stack
+---
 
-| Teknologi | Versi | Kegunaan |
-|---|---|---|
-| [Astro](https://astro.build) | 5.x | Static site generator |
-| [Tailwind CSS](https://tailwindcss.com) | 3.x | Utility-first CSS framework |
-| [MDX](https://mdxjs.com) | - | Markdown dengan JSX components |
-| [TypeScript](https://www.typescriptlang.org) | strict | Type safety |
+## 📚 Dokumen
 
-## Fitur
+| File | Topik |
+|------|-------|
+| [00-setup.md](./00-setup.md) | Instalasi, setup, dan menjalankan proyek |
+| [01-design.md](./01-design.md) | Design system: warna, font, dan token |
+| [02-structure.md](./02-structure.md) | Struktur file dan folder proyek |
+| [03-content.md](./03-content.md) | Cara membuat dan mengelola konten |
+| [04-components.md](./04-components.md) | Referensi semua komponen |
+| [05-deployment.md](./05-deployment.md) | Cara deploy ke GitHub Pages |
+| [06-customization.md](./06-customization.md) | Panduan kustomisasi tampilan |
 
-- **Blog / CTF Writeup** — Tulis writeup CTF dalam format MDX dengan tag kategori (Web, Crypto, Forensics, dll)
-- **Project Showcase** — Tampilkan project kerja (web app, mobile app) dengan gambar, link live demo, dan source code
-- **Tag Filter** — Filter post blog berdasarkan tag di halaman `/blog`
-- **Syntax Highlighting** — Code block otomatis di-highlight menggunakan Shiki (theme: `github-dark`)
-- **Responsive** — Tampilan optimal di desktop dan mobile
-- **Dark Theme** — Warna utama gelap dengan aksen kuning
+## 📄 Template
 
-## Quick Start
+| File | Kegunaan |
+|------|----------|
+| [template/post-template.md](./template/post-template.md) | Template untuk membuat post baru |
+| [template/project-template.md](./template/project-template.md) | Template untuk membuat project baru |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# 1. Clone repository
-git clone https://github.com/AlatBekam/alatbekam.github.io.git
+# Clone repo
+git clone https://github.com/alatbekam/alatbekam.github.io.git
 cd alatbekam.github.io
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Jalankan dev server
+# Jalankan dev server
 npm run dev
+# → http://localhost:4321
 ```
 
-Buka `http://localhost:4321` di browser.
+## ✍️ Tambah Konten Baru (ringkas)
 
-## Dokumentasi
-
-| File | Deskripsi |
-|---|---|
-| [setup.md](./setup.md) | Instalasi, konfigurasi, dan struktur project |
-| [development.md](./development.md) | Cara menjalankan dev server, build, dan preview |
-| [blog.md](./blog.md) | Panduan menulis blog / CTF writeup |
-| [projects.md](./projects.md) | Panduan menambah project |
-| [customization.md](./customization.md) | Kustomisasi tema, warna, komponen |
-| [deployment.md](./deployment.md) | Build dan deploy ke GitHub Pages |
-| [file-reference.md](./file-reference.md) | Referensi lengkap semua file |
-
-## Templates
-
-Template siap pakai untuk menulis post baru:
-
-| Template | File |
-|---|---|
-| CTF Writeup — Web | [templates/1.ctf-web.md](./templates/1.ctf-web.md) |
-| CTF Writeup — Crypto | [templates/2.ctf-crypto.md](./templates/2.ctf-crypto.md) |
-| CTF Writeup — Forensics | [templates/3.ctf-forensics.md](./templates/3.ctf-forensics.md) |
-| Project Log | [templates/4.project-log.md](./templates/4.project-log.md) |
-| Catatan Belajar | [templates/5.catatan-belajar.md](./templates/5.catatan-belajar.md) |
-
-## Struktur direktori
-
+**Post baru:**
+```bash
+# Buat file di:
+src/content/posts/nama-postmu.md
 ```
-├── docs/                          # Dokumentasi ini
-│   ├── templates/                 # Template blog
-│   └── ...
-├── public/img/                    # Gambar (profile, project thumbnails)
-├── src/
-│   ├── components/                # Astro components
-│   ├── content/
-│   │   ├── blog/writing/          # MDX blog posts (CTF writeup)
-│   │   └── projects/writing/      # MDX project posts
-│   ├── layouts/                   # Page layouts
-│   ├── pages/                     # Routes (file = URL)
-│   └── styles/global.css          # Tailwind + prose styles
-├── astro.config.mjs               # Astro config
-├── tailwind.config.mjs            # Tailwind config (warna tema)
-├── package.json                   # Dependencies
-└── tsconfig.json                  # TypeScript config
+
+**Project baru:**
+```bash
+# Buat file di:
+src/content/projects/nama-projectmu.md
+# Thumbnail (opsional) di:
+public/images/projects/nama-gambar.png
 ```
+
+Lihat folder [`template/`](./template/) untuk format lengkapnya.

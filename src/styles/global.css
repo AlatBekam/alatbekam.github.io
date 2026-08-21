@@ -1,121 +1,206 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --color-container: #f9fafb;
-    --color-on-container: #1b1a17;
-  }
+/* ── Tailwind v4 theme tokens ───────────────────────────────────────────── */
+@theme {
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-  .dark {
-    --color-container: #1b1a17;
-    --color-on-container: #fffbff;
-  }
+  /* Primary */
+  --color-primary:        #2BBBD7;
+  --color-primary-dark:   #218DAE;
 
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Light mode */
+  --color-container-light:    #ffffff;
+  --color-on-container-light: #1b1a17;
+  --color-surface-light:      #f2f6f8;
+  --color-border-light:       #dde3e7;
+  --color-muted-light:        #6b7280;
 
-  body {
-    @apply bg-container text-onContainer font-sans transition-colors duration-300;
-  }
-
-  ::selection {
-    @apply bg-accent text-dark;
-  }
-
-  ion-icon {
-    pointer-events: none;
-  }
+  /* Dark mode */
+  --color-container-dark:    #1b1a17;
+  --color-on-container-dark: #ffffff;
+  --color-surface-dark:      #242320;
+  --color-border-dark:       #343330;
+  --color-muted-dark:        #9ca3af;
 }
 
-@layer components {
-  .prose {
-    @apply max-w-none text-dark leading-relaxed;
-  }
+/* ── CSS custom properties (semantic) ──────────────────────────────────── */
+:root {
+  --primary:      #2BBBD7;
+  --container:    #ffffff;
+  --on-container: #1b1a17;
+  --surface:      #f2f6f8;
+  --border:       #dde3e7;
+  --muted:        #6b7280;
+  color-scheme: light;
+}
 
-  .dark .prose {
-    @apply text-gray-200;
-  }
+html.dark {
+  --primary:      #218DAE;
+  --container:    #1b1a17;
+  --on-container: #ffffff;
+  --surface:      #242320;
+  --border:       #343330;
+  --muted:        #9ca3af;
+  color-scheme: dark;
+}
 
-  .prose h1 {
-    @apply text-4xl font-bold mb-6 mt-8;
-  }
+/* ── Base reset & typography ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  .prose h2 {
-    @apply text-2xl font-bold mb-4 mt-8 pb-2 border-b border-gray-300;
-  }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
-  .dark .prose h2 {
-    @apply border-gray-700;
-  }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--container);
+  color: var(--on-container);
+  line-height: 1.7;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
 
-  .prose h3 {
-    @apply text-xl font-bold mb-3 mt-6;
-  }
+/* ── Links ──────────────────────────────────────────────────────────────── */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+a:hover { opacity: 0.75; }
 
-  .prose p {
-    @apply mb-4 text-base leading-7;
-  }
+/* ── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--primary);
+  color: #fff;
+}
 
-  .prose a {
-    @apply text-dark underline decoration-accent decoration-2 underline-offset-2 hover:decoration-dark transition-colors;
-  }
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 999px;
+}
 
-  .dark .prose a {
-    @apply text-gray-200 hover:decoration-white;
-  }
+/* ── Code blocks (Shiki) ────────────────────────────────────────────────── */
+pre {
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
 
-  .prose ul {
-    @apply list-disc list-inside mb-4 space-y-1;
-  }
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
 
-  .prose ol {
-    @apply list-decimal list-inside mb-4 space-y-1;
-  }
+:not(pre) > code {
+  background: var(--surface);
+  color: var(--primary);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--border);
+}
 
-  .prose blockquote {
-    @apply border-l-4 border-accent pl-4 italic my-4 text-gray-600;
-  }
+/* ── Prose (Markdown content) ───────────────────────────────────────────── */
+.prose {
+  max-width: 70ch;
+  color: var(--on-container);
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--on-container);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.prose h1 { font-size: 1.875rem; }
+.prose h2 {
+  font-size: 1.375rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+.prose h3 { font-size: 1.125rem; }
+.prose p  { margin-bottom: 1.25rem; }
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose li { margin-bottom: 0.375rem; }
+.prose blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  color: var(--muted);
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose th {
+  background: var(--surface);
+  font-weight: 600;
+}
+.prose img {
+  border-radius: 0.5rem;
+  max-width: 100%;
+  margin: 1.5rem auto;
+  display: block;
+  border: 1px solid var(--border);
+}
+.prose hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 2rem 0;
+}
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
-  .dark .prose blockquote {
-    @apply text-gray-400;
-  }
+/* ── Tag pill ───────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  transition: background 0.15s;
+}
+.tag:hover {
+  background: color-mix(in srgb, var(--primary) 22%, transparent);
+}
 
-  .prose code {
-    @apply bg-gray-100 text-dark px-1.5 py-0.5 rounded text-sm font-mono;
-  }
+/* ── Utility: monospace text ─────────────────────────────────────────────── */
+.mono { font-family: var(--font-mono); }
 
-  .dark .prose code {
-    @apply bg-gray-800 text-gray-200;
-  }
-
-  .prose pre {
-    @apply bg-dark text-gray-100 rounded-lg p-4 mb-6 overflow-x-auto text-sm leading-relaxed;
-  }
-
-  .prose pre code {
-    @apply bg-transparent text-gray-100 p-0;
-  }
-
-  .prose img {
-    @apply rounded-lg my-6 w-full;
-  }
-
-  .prose table {
-    @apply w-full mb-6 border-collapse;
-  }
-
-  .prose th {
-    @apply bg-dark text-white px-4 py-2 text-left font-bold;
-  }
-
-  .prose td {
-    @apply border border-gray-300 px-4 py-2;
-  }
-
-  .dark .prose td {
-    @apply border-gray-700;
-  }
+/* ── Divider ────────────────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 0;
 }

@@ -1,0 +1,63 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 – Not Found | AlatBekam" description="Halaman tidak ditemukan.">
+  <div class="not-found">
+    <img src="/images/404-image-light.png" alt="" class="nf-img nf-img--light" />
+    <img src="/images/404-image-dark.png"  alt="" class="nf-img nf-img--dark" />
+    <p class="nf-code mono">404</p>
+    <h1 class="nf-title mono">Page not found.</h1>
+    <p class="nf-desc">Aww, Pagenya tidak ada. Maaf ya :(</p>
+    <a href="/" class="nf-back mono">[kembali ke home]</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 5rem 1rem;
+  }
+
+  .nf-code {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+    /* margin-bottom: 1rem; */
+  }
+
+  .nf-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--on-container);
+    margin-bottom: 0rem;
+  }
+
+  .nf-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .nf-back {
+    font-size: 0.875rem;
+    color: var(--primary);
+  }
+
+  .nf-img {
+    display: block;
+    height: 256px;
+    width: auto;
+    object-fit: contain;
+    margin: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Light mode: show light image, hide dark image */
+  html:not(.dark) .nf-img--dark  { display: none; }
+
+  /* Dark mode: show dark image, hide light image */
+  html.dark .nf-img--light { display: none; }
+</style>
