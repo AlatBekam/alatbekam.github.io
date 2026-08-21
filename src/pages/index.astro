@@ -31,7 +31,8 @@ const merged: AnyEntry[] = [
   <!-- ── Hero ─────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Introduction">
     <div class="hero-avatar" aria-hidden="true">
-      <ion-icon name="terminal-outline" class="hero-icon"></ion-icon>
+      <img src="/images/hero-image-light.png" alt="" class="hero-img hero-img--light" />
+      <img src="/images/hero-image-dark.png"  alt="" class="hero-img hero-img--dark" />
     </div>
 
     <h1 class="hero-title mono">
@@ -138,11 +139,19 @@ const merged: AnyEntry[] = [
     margin-bottom: 1.25rem;
   }
 
-  .hero-icon {
-    font-size: 3rem;
-    color: var(--primary);
+  .hero-img {
     display: block;
+    height: 96px;
+    width: auto;
+    object-fit: contain;
   }
+
+  /* Light mode: show light image, hide dark image */
+  html:not(.dark) .hero-img--dark  { display: none; }
+
+  /* Dark mode: show dark image, hide light image */
+  html.dark .hero-img--light { display: none; }
+
 
   .hero-title {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
