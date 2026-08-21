@@ -30,7 +30,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
     <!-- Project list -->
     <div class="archive-list">
       {projects.length === 0 && (
-        <p class="empty-state mono">Maaf ya belum ada project :(. Pantengin terus yaa!</p>
+        <p class="empty-state mono">Sorry, no project right now :(</p>
       )}
       {projects.map(project => (
         <><ProjectCard project={project} /><hr class="divider" /></>

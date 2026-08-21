@@ -31,7 +31,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
     <!-- Post list -->
     <div class="archive-list">
       {posts.length === 0 && (
-        <p class="empty-state mono">Maaf, belum ada post :(. Tunggu updatenya yaa!.</p>
+        <p class="empty-state mono">Sorry, no post right now :(.</p>
       )}
       {posts.map(post => (
         <><PostCard post={post} /><hr class="divider" /></>

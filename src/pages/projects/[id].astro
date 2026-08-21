@@ -1,6 +1,6 @@
 ---
 // src/pages/projects/[id].astro — Individual project page (Astro v5 glob loader uses id)
-import PostLayout from '../../layouts/PostLayout.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -19,14 +19,14 @@ const { thumbnail, repoUrl, liveUrl } = project.data;
 const thumbSrc = thumbnail ? `/images/projects/${thumbnail}` : null;
 ---
 
-<PostLayout
+<ContentLayout
   title={project.data.title}
   description={project.data.description}
   publishDate={project.data.publishDate}
   updatedDate={project.data.updatedDate}
   tags={project.data.tags}
   headings={headings}
-  breadcrumb={{ label: 'projects /', href: '/projects' }}
+  breadcrumb={{ label: 'projects/', href: '/projects' }}
   wordCount={wordCount}
 >
   <!-- Project thumbnail (if exists) -->
@@ -55,7 +55,7 @@ const thumbSrc = thumbnail ? `/images/projects/${thumbnail}` : null;
   )}
 
   <Content />
-</PostLayout>
+</ContentLayout>
 
 <style>
   .project-hero-thumb {
