@@ -1,0 +1,33 @@
+---
+// src/pages/posts/[slug].astro — Individual post page
+// In Astro v5 with glob loader, post.id = filename without extension (used as slug)
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    // Remove file extension from id to use as clean URL slug
+    params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+    props:  { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  publishDate={post.data.publishDate}
+  updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+  headings={headings}
+  breadcrumb={{ label: 'posts /', href: '/posts' }}
+  wordCount={wordCount}
+>
+  <Content />
+</PostLayout>

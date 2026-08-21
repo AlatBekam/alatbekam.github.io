@@ -1,20 +1,20 @@
 ---
-// src/pages/projects/index.astro — All projects archive
+// src/pages/posts/index.astro — All posts archive
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
+import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-const projects = (await getCollection('projects', ({ data }) => !data.draft))
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 ---
 
 <BaseLayout
-  title="Projects | AlatBekam"
-  description="Semua proyek yang telah dikerjakan — web, tools, research, dan lainnya."
+  title="Posts | AlatBekam"
+  description="Semua tulisan: CTF writeups, artikel, dan catatan lainnya."
 >
   <div class="archive-header">
-    <p class="breadcrumb-label mono">Projects</p>
-    <h1 class="archive-title mono">Project archive</h1>
+    <p class="breadcrumb-label mono">Archive</p>
+    <h1 class="archive-title mono">Post archive</h1>
   </div>
 
   <hr class="divider" style="margin-bottom:2rem;" />
@@ -22,18 +22,19 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
   <div class="archive-layout">
     <!-- Sidebar meta -->
     <aside class="archive-sidebar mono">
-      <p>{projects.length} project{projects.length !== 1 ? 's' : ''}</p>
+      <p>{posts.length} file{posts.length !== 1 ? 's' : ''} found</p>
       <p>sort: published</p>
       <p>desc</p>
+      <p>updated: last</p>
     </aside>
 
-    <!-- Project list -->
+    <!-- Post list -->
     <div class="archive-list">
-      {projects.length === 0 && (
-        <p class="empty-state mono">Belum ada project. Tambahkan file .md di <code>src/content/projects/</code>.</p>
+      {posts.length === 0 && (
+        <p class="empty-state mono">Belum ada post. Tambahkan file .md di <code>src/content/posts/</code>.</p>
       )}
-      {projects.map(project => (
-        <><ProjectCard project={project} /><hr class="divider" /></>
+      {posts.map(post => (
+        <><PostCard post={post} /><hr class="divider" /></>
       ))}
     </div>
   </div>

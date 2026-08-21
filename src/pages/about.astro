@@ -1,43 +1,201 @@
 ---
+// src/pages/about.astro — About page
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="About - AlatBekam">
-  <Navbar />
-  <main class="pt-28 pb-20 px-6">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-4xl font-bold mb-8">About Me</h1>
+<BaseLayout
+  title="About | AlatBekam"
+  description="Tentang AlatBekam — cybersecurity enthusiast, CTF player."
+>
+  <div class="about-header">
+    <p class="breadcrumb-label mono">About</p>
+    <h1 class="about-title mono">About me</h1>
+  </div>
 
-      <div class="prose space-y-6">
-        <p>
-          Hi, I'm <strong>Hisara</strong> &mdash; a front-end developer and security enthusiast
-          from Pontianak, Indonesia.
-        </p>
+  <hr class="divider" style="margin-bottom:2.5rem;" />
 
-        <p>
-          I started learning web development in July 2022 during my time at SMKN 4 Pontianak.
-          Since then, I've been building web applications and exploring the world of
-          cybersecurity through CTF (Capture The Flag) competitions.
-        </p>
+  <div class="about-content">
+    <!-- 
+      TODO: Ganti semua placeholder di bawah ini dengan informasi kamu sendiri.
+    -->
 
-        <h2>What I Do</h2>
-        <ul>
-          <li><strong>Web Development</strong> &mdash; Building modern web apps with HTML, CSS, JavaScript, and various frameworks.</li>
-          <li><strong>Mobile Development</strong> &mdash; Creating mobile applications.</li>
-          <li><strong>CTF</strong> &mdash; Participating in CTF competitions, focusing on web exploitation, forensics, and cryptography.</li>
-        </ul>
+    <p class="about-intro">
+      My name is <strong>AlatBekam</strong> — a cybersecurity enthusiast and CTF player.
+      <!-- Ganti dengan bio lengkap kamu di sini. -->
+    </p>
 
-        <h2>Connect</h2>
-        <p>
-          You can find me on
-          <a href="https://github.com/AlatBekam" target="_blank">GitHub</a>,
-          <a href="https://www.instagram.com/hiisara_/" target="_blank">Instagram</a>, and
-          <a href="https://bit.ly/3SXxTBn" target="_blank">YouTube</a>.
-        </p>
-      </div>
+    <!-- Sosial media -->
+    <div class="about-socials" aria-label="Social media">
+      <a href="https://github.com/alatbekam" target="_blank" rel="noopener noreferrer" class="social-item mono">
+        <ion-icon name="logo-github"></ion-icon> github.com/alatbekam
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-item mono">
+        <ion-icon name="logo-linkedin"></ion-icon> linkedin (ganti link)
+      </a>
+      <a href="mailto:email@example.com" class="social-item mono">
+        <ion-icon name="mail-outline"></ion-icon> email@example.com (ganti)
+      </a>
     </div>
-  </main>
-  <Footer />
+
+    <!-- CTF Section -->
+    <section class="about-section">
+      <h2 class="about-section-title mono">Selected CTFs</h2>
+      <p class="about-section-desc">
+        <!-- TODO: Ganti teks ini dengan deskripsi partisipasi CTF kamu. -->
+        Besides playing local CTFs, I also compete internationally.
+      </p>
+
+      <div class="ctf-tables">
+        <h3 class="table-title mono">International CTFs</h3>
+        <table class="ctf-table">
+          <thead>
+            <tr>
+              <th>Competition</th>
+              <th>Team</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- TODO: Ganti dengan data CTF kamu yang sebenarnya -->
+            <tr>
+              <td>Sample CTF 2026</td>
+              <td>YourTeam</td>
+              <td>1st Place</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="table-title mono" style="margin-top:1.5rem;">Local CTFs</h3>
+        <table class="ctf-table">
+          <thead>
+            <tr>
+              <th>Competition</th>
+              <th>Team</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- TODO: Ganti dengan data CTF lokal kamu -->
+            <tr>
+              <td>Sample Local CTF 2026</td>
+              <td>YourTeam</td>
+              <td>1st Place</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="about-section">
+      <h2 class="about-section-title mono">Skills</h2>
+      <div class="skills-grid">
+        <!-- TODO: Tambah atau hapus skill sesuai kebutuhanmu -->
+        {['Web Exploitation', 'Binary Exploitation', 'Reverse Engineering', 'Cryptography', 'OSINT', 'Linux'].map(skill => (
+          <span class="tag">{skill}</span>
+        ))}
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .about-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb-label {
+    font-size: 0.75rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .about-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--on-container);
+  }
+
+  .about-content {
+    max-width: 680px;
+  }
+
+  .about-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--on-container);
+    margin-bottom: 1.75rem;
+  }
+
+  .about-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .social-item {
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.15s;
+  }
+  .social-item ion-icon { font-size: 1.1rem; }
+  .social-item:hover { color: var(--primary); opacity: 1; }
+
+  .about-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .about-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--on-container);
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .about-section-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .table-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .ctf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .ctf-table th,
+  .ctf-table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .ctf-table th {
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>

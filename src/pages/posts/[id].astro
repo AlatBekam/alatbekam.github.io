@@ -1,0 +1,31 @@
+---
+// src/pages/posts/[id].astro — Individual post page (Astro v5 glob loader uses id)
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { id: post.id },
+    props:  { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  publishDate={post.data.publishDate}
+  updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+  headings={headings}
+  breadcrumb={{ label: 'posts /', href: '/posts' }}
+  wordCount={wordCount}
+>
+  <Content />
+</PostLayout>

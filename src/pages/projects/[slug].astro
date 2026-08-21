@@ -1,0 +1,93 @@
+---
+// src/pages/projects/[slug].astro — Individual project page
+// In Astro v5 with glob loader, project.id = filename without extension (used as slug)
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => !data.draft);
+  return projects.map(project => ({
+    params: { slug: project.id.replace(/\.(md|mdx)$/, '') },
+    props:  { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content, headings } = await render(project);
+
+const wordCount = project.body ? project.body.split(/\s+/).length : 0;
+const { thumbnail, repoUrl, liveUrl } = project.data;
+const thumbSrc = thumbnail ? `/images/projects/${thumbnail}` : null;
+---
+
+<PostLayout
+  title={project.data.title}
+  description={project.data.description}
+  publishDate={project.data.publishDate}
+  updatedDate={project.data.updatedDate}
+  tags={project.data.tags}
+  headings={headings}
+  breadcrumb={{ label: 'projects /', href: '/projects' }}
+  wordCount={wordCount}
+>
+  {thumbSrc && (
+    <div class="project-hero-thumb">
+      <img src={thumbSrc} alt={`Preview ${project.data.title}`} />
+    </div>
+  )}
+
+  {(repoUrl || liveUrl) && (
+    <div class="project-links mono">
+      {repoUrl && (
+        <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+          <ion-icon name="logo-github" style="vertical-align:middle;margin-right:0.25em;"></ion-icon>
+          Repository ↗
+        </a>
+      )}
+      {liveUrl && (
+        <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+          <ion-icon name="globe-outline" style="vertical-align:middle;margin-right:0.25em;"></ion-icon>
+          Live Demo ↗
+        </a>
+      )}
+    </div>
+  )}
+
+  <Content />
+</PostLayout>
+
+<style>
+  .project-hero-thumb {
+    border-radius: 0.625rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-hero-thumb img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  .project-link {
+    font-size: 0.875rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: opacity 0.15s;
+  }
+  .project-link:hover { opacity: 0.7; }
+</style>

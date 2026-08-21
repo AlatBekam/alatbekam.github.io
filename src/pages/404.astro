@@ -1,0 +1,46 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 – Not Found | AlatBekam" description="Halaman tidak ditemukan.">
+  <div class="not-found">
+    <p class="nf-code mono">404</p>
+    <h1 class="nf-title mono">Page not found.</h1>
+    <p class="nf-desc">Halaman yang kamu cari tidak ada atau sudah dipindahkan.</p>
+    <a href="/" class="nf-back mono">[kembali ke home]</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 5rem 1rem;
+  }
+
+  .nf-code {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .nf-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--on-container);
+    margin-bottom: 0.75rem;
+  }
+
+  .nf-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .nf-back {
+    font-size: 0.875rem;
+    color: var(--primary);
+  }
+</style>

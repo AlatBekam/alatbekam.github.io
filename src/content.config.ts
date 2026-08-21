@@ -1,28 +1,33 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
-const blog = defineCollection({
-  type: 'content',
+// Posts collection: CTF writeups, articles, etc.
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    date: z.coerce.date(),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
-    image: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
 
+// Projects collection: portfolio projects with optional thumbnail
 const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    date: z.coerce.date(),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
-    image: z.string().optional(),
-    link: z.string().optional(),
-    github: z.string().optional(),
+    thumbnail: z.string().optional(), // relative to public/images/projects/
+    repoUrl: z.string().url().optional(),
+    liveUrl: z.string().url().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { blog, projects };
+export const collections = { posts, projects };
