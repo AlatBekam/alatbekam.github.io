@@ -1,7 +1,7 @@
 ---
 title: "Penyisihan Gemastik XIX – Divisi II Cyber Security"
 description: "Writeup penyisihan Gemastik XIX Divisi II Cyber Security."
-publishDate: 2024-10-01
+publishDate: 2026-08-24
 tags: ["CTF", "Gemastik", "Cyber Security"]
 ---
 
