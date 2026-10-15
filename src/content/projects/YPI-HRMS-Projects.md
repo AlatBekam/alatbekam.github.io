@@ -1,8 +1,9 @@
 ---
 title: "YPI HRMS – Daily System Maintenance & Technical Operations"
-description: "Program daily maintenance dan technical support komprehensif untuk ekosistem HRMS Yayasan Planet Indonesia (YPI) — meliputi keandalan backend, stabilitas web dashboard HR, serta performa mobile apps."
+description: "Comprehensive daily maintenance and technical support program for the Yayasan Planet Indonesia (YPI) HRMS ecosystem — covering backend reliability, HR web dashboard stability, and mobile app performance."
 publishDate: 2026-09-01
-tags: ["Maintenance", "HRMS", "Backend", "Web Dashboard", "Mobile App", "DevOps", "Magang"]
+tags: ["Maintenance", "HRMS", "Backend", "Web Dashboard", "Mobile App", "DevOps", "Internship"]
+thumbnail: "ypi-preview.png"
 ---
 
 > Ensuring high availability, data integrity, and seamless operational continuity across the Yayasan Planet Indonesia (YPI) HRMS ecosystem — covering backend services, administrative web dashboard, and employee mobile applications.
@@ -11,7 +12,12 @@ tags: ["Maintenance", "HRMS", "Backend", "Web Dashboard", "Mobile App", "DevOps"
 
 **Yayasan Planet Indonesia (YPI)** is a non-profit organization dedicated to community-based conservation and environmental preservation. To support its growing operations and distributed team across regional sites, YPI utilizes an integrated **Human Resource Management System (HRMS)**.
 
-This maintenance project is a dedicated engineering commitment spanning from **September to December 2026** to conduct daily maintenance, system monitoring, issue troubleshooting, performance tuning, and technical support across all three tiers of the HRMS infrastructure: the backend API, the administrative web dashboard, and the cross-platform mobile apps.
+This maintenance project is a dedicated engineering commitment spanning from **September to December 2026** to conduct daily maintenance, system monitoring, issue troubleshooting, performance tuning, and technical support across all three tiers of the HRMS infrastructure: 
+- the backend API
+- the administrative web dashboard
+- the cross-platform mobile apps.
+
+## Detail
 
 | Info         | Detail                                                                  |
 | ------------ | ----------------------------------------------------------------------- |
@@ -23,11 +29,12 @@ This maintenance project is a dedicated engineering commitment spanning from **S
 
 ## Scope of Maintenance
 
+- **Request-Driven Daily Maintenance** — Addressing daily user-reported issues, operational bugs, and feature refinements within the active maintenance contract.
+- **Out-of-Scope Feature Development** — Formulating Product Requirement Documents (PRDs) and executing new contract agreements for extended system improvements.
 - **Backend & Database Infrastructure** — Daily server uptime verification, database health monitoring, automated backup checks, and query optimization.
 - **Web Dashboard Operations** — Ensuring uninterrupted access for HR admins, resolving UI/UX glitches, managing user roles, and validating leave/payroll calculations.
 - **Mobile Application Stability** — Monitoring client crashes, ensuring GPS & geofencing accuracy for field and office attendance, and maintaining session reliability.
 - **Incident Response & Bug Triage** — Rapid diagnosis of reported edge cases, patch deployment, hotfixing, and user-facing technical support.
-- **Data Integrity & Security** — Verifying employee data consistency, attendance logs, and audit trails.
 
 ## Platform Ecosystem & Architecture
 
@@ -54,64 +61,37 @@ YPI HRMS Ecosystem (Maintenance Scope)
 
 ## Daily Maintenance Routine & Key Responsibilities
 
-As the **Maintenance Engineer / Fullstack & Mobile Maintenance Developer**, my day-to-day responsibilities span active monitoring, swift debugging, routine upkeep, and planned performance improvements:
+As the **Maintenance Engineer / Fullstack & Mobile Maintenance Developer**, my day-to-day responsibilities span active monitoring, client communication, daily issue resolution, and managing the delivery lifecycle for both in-contract and extended feature scopes:
 
-### 1. Daily Health Checks & Backend Reliability
-- **System Health Verification:** Executed daily morning health checks across backend API endpoints to guarantee responsive service availability.
-- **Database Health & Backups:** Monitored database connection pools, tracked slow queries, and verified the successful execution of automated daily database dumps.
-- **Cron Job & Scheduled Task Auditing:** Ensured scheduled system tasks — such as daily attendance reconciliations, automated reminder triggers, and backup archiving — executed reliably without hanging.
-- **Server Resources & Log Inspection:** Reviewed server CPU/RAM utilization and analyzed error logs to proactively identify memory leaks or recurring unhandled exceptions.
+### 1. Request-Driven Daily Maintenance (In-Contract Scope)
+- **Continuous Client Triage:** Received and processed daily communications from the YPI team regarding active bugs, operational hurdles, and incremental feature improvements strictly within the existing maintenance agreement.
+- **Web Dashboard Adjustments:** Resolved daily reported issues on the administrative portal, including leave allowance recalculations, attendance deductions, access control permissions, and data table export discrepancies.
+- **Mobile App Stabilization:** Handled reported mobile application quirks, such as GPS drift and geofencing threshold calibration for staff clock-in across remote sites, crash prevention on various Android/iOS versions, and session token renewal.
+- **Backend Health & Automated Jobs:** Kept backend REST APIs performant, monitored database health, tuned heavy queries, and verified that automated scheduled tasks (daily backups and attendance rollups) completed successfully every morning.
 
-### 2. Web Dashboard Maintenance & HR Support
-- **Workflow & Calculation Troubleshooting:** Diagnosed and corrected edge-case calculation anomalies in leave allowances, attendance cuts, and monthly payroll reports.
-- **Admin Portal UI/UX Fixes:** Addressed interface bugs, state discrepancies, and data table filtering/exporting glitches reported by the HR administration team.
-- **Access Control & Role Permissions:** Maintained user permission structures, role assignments, and department hierarchies to ensure data confidentiality.
+### 2. Out-of-Scope Improvements & New Contract Lifecycle (PRD-Driven)
+- **Scope Assessment & Requirement Gathering:** Evaluated client feature requests that fell outside the standard maintenance agreement, distinguishing routine bug fixes from significant architectural additions.
+- **Collaborative PRD Formulation:** Co-authored and established comprehensive **Product Requirement Documents (PRDs)** alongside the YPI stakeholders — outlining exact feature requirements, UI/UX specifications, database schemas, and API contracts.
+- **Contract Agreement Execution:** Facilitated the scoping and technical estimations that served as the foundation for signing new project contracts/addendums with the client prior to starting development.
+- **Implementation & Safe Delivery:** Engineered, tested in staging, and deployed the approved out-of-scope feature sets into production with zero downtime for daily HR workflows.
 
-### 3. Mobile Application Maintenance & Performance Tuning
-- **Attendance & Geofencing Accuracy:** Resolved GPS drift and location threshold discrepancies to ensure reliable staff clock-in/out across various remote conservation posts and office sites.
-- **Crash Monitoring & Client Patching:** Tracked crash reports across diverse Android and iOS OS versions, resolving null-pointer exceptions and UI rendering anomalies.
-- **Authentication & Network Handling:** Improved JWT refresh token lifecycle handling, gracefully managing intermittent network drops in field environments.
-
-### 4. Incident Response, Bug Triage & Hotfix Releases
-- **Issue Triage:** Cataloged, reproduced, and prioritized bug reports submitted by internal YPI users.
-- **Safe Hotfix Deployment:** Engineered isolated bug fixes, conducted regression tests in staging environments, and scheduled production patches with zero disruption to daily HR activities.
-- **Documentation & Maintenance Changelogs:** Maintained a detailed maintenance log documenting root causes, resolutions, system configuration updates, and operational guidelines.
+### 3. Incident Response, Quality Assurance & Documentation
+- **Priority Triage Matrix:** Cataloged, prioritized, and reproduced issues submitted by YPI personnel, focusing on urgent blockers affecting time-sensitive attendance and payroll cycles.
+- **Safe Staging & Zero-Downtime Hotfixes:** Tested every fix and new feature in a mirror staging environment before deploying hotfixes to production during off-peak hours.
+- **Maintenance Logs & Changelogs:** Maintained detailed audit trails, technical documentation, root-cause analyses, and versioned release notes shared with the client.
 
 ---
 
 ## Tech Stack & Maintenance Tools
 
-| Category | Technology / Tools | Maintenance Focus |
+| Category | Technology / Tools | Maintenance & Development Focus |
 | :--- | :--- | :--- |
-| **Backend Framework** | Node.js / Laravel RESTful API | Endpoint latency, route handling, error trapping, and API uptime |
-| **Database** | PostgreSQL / MySQL | Daily backup validation, schema migrations, and query indexing |
-| **Web Dashboard** | Vue.js / React Admin Dashboard | HR portal workflows, table rendering, state management, and reports |
-| **Mobile Application** | Flutter / React Native | GPS geofencing accuracy, crash reduction, token persistence, and UI stability |
-| **Monitoring & Logging** | Server Logs, Sentry / Crashlytics | Proactive error tracking, exception logging, and uptime diagnostics |
-| **DevOps & Versioning** | Git, CI/CD, Linux Server | Staging deployments, hotfix management, cron maintenance |
-
----
-
-## Project Timeline & Milestones (Sep – Dec 2026)
-
-- **September 2026 — Onboarding & Baseline System Audit:**
-  - Complete architecture walkthrough and environment configuration.
-  - Established standardized daily monitoring routines and backup integrity verification protocols.
-  - Initial backlog triage and resolution of critical pending issues.
-
-- **October 2026 — Database Optimization & Geofencing Refinements:**
-  - Analyzed and indexed frequent database queries to improve dashboard load speeds.
-  - Refined GPS geofencing radius and location caching logic for the mobile attendance module.
-  - Addressed first-round monthly attendance reconciliation edge cases.
-
-- **November 2026 — Performance Tuning & Workflow Automation:**
-  - Automated proactive alerting for API latency spikes and failed scheduled tasks.
-  - Streamlined leave request validation and payroll export processing.
-  - Optimized mobile memory footprint and startup performance.
-
-- **December 2026 — End-of-Period Audit & Documentation Handover:**
-  - Comprehensive system health and stability review across all three platforms.
-  - Finalized maintenance documentation, troubleshooting playbooks, and architecture notes.
-  - Delivered the operational handover and project retrospective report to the YPI team.
+| **Backend Framework** | Laravel 9 (PHP 8.0), Livewire 2.12 | RESTful APIs, Livewire components, state transition services, and cron jobs |
+| **Database** | MySQL | Schema migrations, query indexing, daily backup routines, and transactions |
+| **Web Dashboard** | Bootstrap 5, Laravel Mix | HR administrative portal, dynamic forms, custom tables, and responsive UI |
+| **Mobile Application** | Flutter | GPS geofencing attendance, offline state caching, and mobile client stability |
+| **Reporting & Documents** | PhpSpreadsheet, Maatwebsite Excel, DOMPDF | Cell-based template exports, PDF generation, and private file storage |
+| **Monitoring & Logging** | Server Logs, Sentry, Custom Audit Logs | Error tracking, actor snapshot audit trails (`hr_process_logs`), and uptime diagnostics |
+| **DevOps & Versioning** | Git, CI/CD, Linux Server | Staging environments, hotfix pipelines, and zero-downtime production deployments |
 
 ---

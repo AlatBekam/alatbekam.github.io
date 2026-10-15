@@ -2,7 +2,7 @@
 title: "Smart Qur'an – Digital Al-Qur'an Application"
 description: "A lightweight, modern digital Al-Qur'an mobile app developed for Jabatan Kemajuan Islam Malaysia (JAKIM) — featuring audio tilawah, smart search, and full offline capabilities."
 publishDate: 2026-08-31
-tags: ["Mobile App", "Nuxt.js", "Capacitor", "Laravel", "Quran Digital", "Magang"]
+tags: ["Mobile App", "Nuxt.js", "Capacitor", "Laravel", "Digital Quran", "Internship"]
 thumbnail: "smart-quran-preview.png"
 ---
 
@@ -63,7 +63,7 @@ As the **Mobile & Hybrid Application Developer**, I was responsible for engineer
 - **Network State Handling (`@capacitor/network`):** Implemented global reactive offline/online state detection across all application views.
 
 ### 2. Architecture, Internationalization & Reusable UI
-- **Multi-language Setup (`@nuxtjs/i18n`):** Configured the internationalization architecture and directory structure supporting English (`EN`) and Bahasa Melayu (`MY`) locales.
+- **Multi-language Setup (`@nuxtjs/i18n`):** Configured the internationalization architecture and directory structure supporting English (`EN`) and Malay (`MY`) locales.
 - **Reusable State Components:** Developed standardized global UI state components:
   - `<LoadingState>` — Smooth skeleton & loading indicators.
   - `<EmptyState>` — Clean placeholder illustrations for empty search/bookmarks.

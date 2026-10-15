@@ -1,8 +1,8 @@
 ---
-title: "kGYM – Sistem Manajemen Gym & Fitness"
-description: "Ekosistem digital terintegrasi untuk kGYM — manajemen membership, QR check-in, booking personal trainer, dan operasional multi-cabang dalam satu platform."
+title: "kGYM – Gym & Fitness Management System"
+description: "Integrated digital ecosystem for kGYM — membership management, QR check-in, personal trainer booking, and multi-branch operations in a single platform."
 publishDate: 2026-08-31
-tags: ["Mobile App", "Flutter", "Gym Management", "Magang"]
+tags: ["Mobile App", "Flutter", "Gym Management", "Internship"]
 thumbnail: "Kgym-preview.png"
 ---
 
